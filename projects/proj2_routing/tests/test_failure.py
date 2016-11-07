@@ -63,6 +63,13 @@ def launch():
 
         yield t
 
+        ### added so basically, we arent timing out fast enough
+
+        # api.userlog.debug("Sending test ping 2")
+        # h1.ping(h2)
+
+        # yield t
+
         if h2.pings != 2:
             api.userlog.error("h2 got %s packets instead of 2", h2.pings)
             good = False
