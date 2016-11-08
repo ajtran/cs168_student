@@ -3,7 +3,7 @@
 #git add [file]
 #git commit -m "[message]"
 #git push origin master
-
+import re
 import json
 import subprocess
 
@@ -46,8 +46,13 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		print(sublist2)
 
 		#calculate drop rate ****NEED CASE IF DROP_RATE = 100%*** make MAX = -1.0, and MEDIAN = -1.0
-		drop_rate = sublist2[len(sublist2)-3] 
-		drop_rate = float(drop_rate[:len(drop_rate)-1])
+		# drop_rate = sublist2[len(sublist2)-3] 
+		# drop_rate = float(drop_rate[:len(drop_rate)-1])
+
+		substring = parse[ind:][1]
+
+		drop_rate = re.findall(r'\d+%', substring)[0]
+		drop_rate = float(drop_rate[:len(drop_rate) - 1])
 
 		if drop_rate == 100.0:
 
