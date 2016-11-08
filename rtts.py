@@ -7,6 +7,9 @@ import re
 import json
 import subprocess
 
+with open("alexa_top_100") as filename:
+	top_100 = filename.read().split()
+
 def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_output_filename):
 	"""
 	outputs two json files: 
@@ -92,8 +95,8 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		#add data to the second file
 		aggr_file[host] = aggr
 
-	with open(raw_ping_output_filename, 'w') as rpr:
-		json.dump(raw_file, rpr)
+	with open(raw_ping_output_filename, 'w') as rpo:
+		json.dump(raw_file, rpo)
 
 	with open(aggregated_ping_output_filename, 'w') as apo:
 		json.dump(aggr_file, apo)
