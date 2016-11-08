@@ -114,7 +114,12 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 	website that responds to ping
 
 	"""
-	pass
+	with open(agg_ping_results_filename) as apr:
+		data = json.load(apr)
+	return data
+
+data = plot_median_rtt_cdf("aggregated_ping.json", "temp.json")
+
 
 def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 
