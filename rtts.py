@@ -13,9 +13,10 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 		1) dictionary of hostnames : [RTTs]
 
-		2) dictionary of hostnames : {“drop_rate”: drop_rate1, “max_rtt”: max_rtt1, “median_rtt”: median_rtt1}
-
+		2) dictionary of hostnames : {"drop_rate": drop_rate1, "max_rtt": max_rtt1, "mediam_rtt": median_rtt1}
 	"""
+
+	print("HELLLLOOOOO")
 
 	raw_file = {}
 	aggr_file = {}
@@ -46,11 +47,11 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		drop_rate = sublist2[len(sublist2)-3] 
 		drop_rate = float(drop_rate[:len(drop_rate)-1])
 
-		if drop_rate = 100.0:
+		if drop_rate == 100.0:
 
 			aggr = {"drop_rate": drop_rate, "max_rtt": -1.0, "median_rtt": -1.0}
 			aggr_file[host] = aggr
-			raw_file[host] =[]
+			raw_file[host] = []
 			continue
 
 
@@ -62,6 +63,8 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 		#sort time to extract MAX later and Median
 		times.sort()
+
+		MAX = times[len(times)-1]
 
 		#find median
 		if len(times) % 2 != 0:
@@ -82,6 +85,13 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		#add data to the second file
 		aggr_file[host] = aggr
 
+	with open(raw_ping_output_filename, 'w') as rpr:
+		json.dump(raw_file, rpr)
+
+	with open(aggregated_ping_output_filename, 'w') as apo:
+		json.dump(aggr_file, apo)
+
+	print("DONE")
 
 
 

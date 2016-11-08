@@ -3,7 +3,7 @@ import subprocess
 host = "www.google.com"
 
 ping = subprocess.Popen(
-    ["ping", "-c", "100", host],
+    ["ping", "-c", "10", host],
     stdout = subprocess.PIPE,
     stderr = subprocess.PIPE
 )
@@ -30,14 +30,17 @@ print(sublist2)
 drop_rate = sublist2[len(sublist2) -3]
 drop_rate = float(drop_rate[:len(drop_rate)-1])
 
+print("DROP RATE:")
 print(drop_rate)
 
 times = [float(x.split()[len(x.split())-2][5:]) for x in sublist1]
 times.sort()
 
+print("TIMES:")
 print(times)
 
 MAX = times[len(times)-1]
+print("MAX:")
 print(MAX)
 
 
@@ -52,6 +55,7 @@ else:
 	lower_middle = times[split-1]
 	median = (upper_middle + lower_middle)/2
 
+print("MEDIAN:")
 print(median)
 
 
