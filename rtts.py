@@ -34,8 +34,10 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		data = out.decode("utf-8") 
 		parse = data.split('\n')
 
+		print(parse)
 
-		ind=parse.index("--- www.google.com ping statistics ---")
+		marker = "--- " + host + " ping statistics ---"
+		ind=parse.index(marker)
 		sublist1 = parse[1:ind-1] #use this to extract times
 		sublist1 = [x for x in sublist1 if not x.startswith("Request timeout for")]
 		sublist2 = parse[ind:][1].split() #use this to extract drop rate
