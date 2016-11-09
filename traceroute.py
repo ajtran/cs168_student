@@ -41,11 +41,12 @@ def run_traceroute(hostnames, num_packets, output_filename):
           ip = splitted[2][1:len(splitted[2])-1]
           hops.append({"ip": ip, "name": name, "ASN": ASN})
 
-  with open(output_filename, "w") as filename:
+  with open(output_filename, "a") as filename:
     json.dump(output, filename)
 
 # test with one packet on google.com -- works
-run_traceroute(["google.com"], 1, "google_route.json")
+exper_a = ["google.com", "facebook.com", "www.berkeley.edu", "allspice.lcs.mit.edu", "todayhumor.co.kr", "www.city.kobe.lg.jp", "www.vutbr.cz", "zanvarsity.ac.tz"]
+run_traceroute(exper_a, 5, "tr_a.json")
 
 def parse_traceroute(raw_traceroute_filename, output_filename):
   """
