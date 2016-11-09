@@ -107,7 +107,7 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 	print("DONE")
 
 
-
+run_ping(["amazon.com"], 10, "raw_ping.json", "aggregated_ping.json")
 
 def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 
@@ -117,23 +117,75 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 	website that responds to ping
 
 	"""
+	# with open(agg_ping_results_filename) as apr:
+	# 	data = json.load(apr)
+	# medians = []
+	# for value in data.values():
+	# 	median = value["median_rtt"]
+	# 	if median >= 0:
+	# 		medians.append(median)
+	# medians.sort()
+
+	# plt.plot(medians, np.linspace(0,1,len(medians)))
+	# plt.grid()
+	# plt.xlabel("miliseconds")
+	# plt.ylabel("Cumulative Fraction")
+	# plt.show()
+
+	def cumulative_fraction(list_medians, max_time):
+		count = 0.0
+
+		for median in list_medians:
+			if median <= max_time:
+				count+=1.0
+			else:
+				break
+		fraction = count/float(len(list_medians))
+		return fraction
+
+
+	data = None
+	MEDIAN = "median_rtt"
+
+	x_values, y_values = [],[] 
+	my_filepath = output_cdf_filename + ".pdf"
+
+	init_x_val = 0.0
+
 	with open(agg_ping_results_filename) as apr:
-		data = json.load(apr)
-	medians = []
-	for value in data.values():
-		median = value["median_rtt"]
-		if median >= 0:
-			medians.append(median)
-	medians.sort()
+		data = json.load(apr) #of form hostname : {"drop_rate": drop_rate, "max_rtt": MAX, "median_rtt": median}
+	print(data)
+	median_rtts_list = []
 
-	plt.plot(medians, np.linspace(0,1,len(medians)))
-	plt.grid()
-	plt.xlabel("miliseconds")
-	plt.ylabel("Cumulative Fraction")
-	plt.show()
+	for dr_med in data.values():
+		#make sure we do not plot hosts that were not reached
+		if dr_med[MEDIAN] != -1.0:
+			median_rtts_list.append(dr_med[MEDIAN])
 
+	median_rtts_list.sort()
 
-# plot_median_rtt_cdf("aggregated_ping.json", "temp.json")
+	MAX_MED = median_rtts_list[len(median_rtts_list)-1]
+	
+	x_val = init_x_val
+
+	while x_val <= MAX_MED:
+
+		x_values,y_values = x_val, cumulative_fraction(median_rtts_list,x_val)
+
+		x_val = x_val + 0.1
+
+	print(x_values)
+	print(y_values)
+
+	plot.plot(x_values, y_values, label= "rtt_a_agg")
+	plot.legend() # This shows the legend on the plot.
+	plot.grid() # Show grid lines, which makes the plot easier to read.
+	plot.xlabel("MEDIAN") # Label the x-axis.
+	plot.ylabel("DROP RATE") # Label the y-axis.
+	plot.show()
+
+	with backend_pdf.PdfPages(my_filepath) as pdf:
+		pdf.savefig()
 
 
 def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
