@@ -1,8 +1,11 @@
 # # testing....
 
-# import subprocess
+import subprocess
+import time
+import re
+import json
 
-# host = "www.google.com"
+hostname = "google.com"
 
 # ping = subprocess.Popen(
 #     ["ping", "-c", "10", host],
@@ -10,13 +13,45 @@
 #     stderr = subprocess.PIPE
 # )
 
+timestamp = str(time.time())
+traceroute = subprocess.Popen(
+  ["traceroute", "-a", "-q", "1", hostname],
+  stdout = subprocess.PIPE,
+  stderr = subprocess.PIPE
+)
+
 # out, error = ping.communicate()
+
+out, error = traceroute.communicate()
 
 # data = out.decode("utf-8") 
 # parse = data.split('\n')
 
-# print(data)
+# splitted = out.split('\n')
 
+
+output = {"timestamp":timestamp, hostname:[]}
+for line in out.split('\n'):
+  # name, ip, ASN
+  print(line)
+  splitted = line.split()
+  if splitted:
+  #   hop = splitted[0]
+    if re.match('^\d+$', splitted[0]):
+      # new hop
+      ASN = splitted[1][3:len(splitted[1])-1]
+      name = splitted[2]
+      ip = splitted[3][1:len(splitted[3])-1]
+      hops = [{"ip": ip, "name": name, "ASN": ASN}]
+      output[hostname].append(hops)
+    else:
+      ASN = splitted[0][3:len(splitted[0])-1]
+      name = splitted[1]
+      ip = splitted[2][1:len(splitted[2])-1]
+      hops.append({"ip": ip, "name": name, "ASN": ASN})
+
+with open("google_route.json", "w") as gr:
+  json.dump(output, gr)
 
 # ind=parse.index("--- www.google.com ping statistics ---")
 
@@ -59,8 +94,3 @@
 
 # print("MEDIAN:")
 # print(median)
-
-with open("alexa_top_100") as f:
-  content = f.read()
-
-print(content.split())

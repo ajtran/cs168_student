@@ -6,6 +6,9 @@
 import re
 import json
 import subprocess
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.backends import backend_pdf
 
 with open("alexa_top_100") as filename:
 	top_100 = filename.read().split()
@@ -116,9 +119,21 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 	"""
 	with open(agg_ping_results_filename) as apr:
 		data = json.load(apr)
-	return data
+	medians = []
+	for value in data.values():
+		median = value["median_rtt"]
+		if median >= 0:
+			medians.append(median)
+	medians.sort()
 
-data = plot_median_rtt_cdf("aggregated_ping.json", "temp.json")
+	plt.plot(medians, np.linspace(0,1,len(medians)))
+	plt.grid()
+	plt.xlabel("miliseconds")
+	plt.ylabel("Cumulative Fraction")
+	plt.show()
+
+
+# plot_median_rtt_cdf("aggregated_ping.json", "temp.json")
 
 
 def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
@@ -127,4 +142,13 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 	this function should take in a filename with the json formatted 
 	raw ping data for a particular hostname, and plot a CDF of the RTTs
 	"""
-	pass
+	with open(raw_ping_results_filename) as rpr:
+		data = json.load(rpr)
+	for hostname, pings in data.items():
+		plt.plot(pings, np.linspace(0,1,len(pings)), label=hostname)
+	plt.legend()
+	plt.grid() # Show grid lines, which makes the plot easier to read.
+ 	plt.xlabel("miliseconds") # Label the x-axis.
+ 	plt.ylabel("Cumulative Fraction") # Label the y-axis.
+	with backend_pdf.PdfPages(output_cdf_filename) as pdf:
+		pdf.savefig()
