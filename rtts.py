@@ -22,7 +22,7 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		2) dictionary of hostnames : {"drop_rate": drop_rate1, "max_rtt": max_rtt1, "mediam_rtt": median_rtt1}
 	"""
 
-	print("HELLLLOOOOO")
+	# print("HELLLLOOOOO")
 
 	raw_file = {}
 	aggr_file = {}
@@ -40,16 +40,16 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		data = out.decode("utf-8") 
 		parse = data.split('\n')
 
-		print(parse)
+		# print(parse)
 
-		marker = "--- " + host + " ping statistics ---"
+		marker = re.findall("---\s.*\sping\sstatistics\s---", data)[0]
 		ind=parse.index(marker)
 		sublist1 = parse[1:ind-1] #use this to extract times
-		sublist1 = [x if x.startswith("Request timeout for") else -1.0 for x in sublist1]
+		sublist1 = [x if not x.startswith("Request timeout for") else -1.0 for x in sublist1]
 		sublist2 = parse[ind:][1].split() #use this to extract drop rate
 
-		print(sublist1)
-		print(sublist2)
+		# print(sublist1)
+		# print(sublist2)
 
 		#calculate drop rate ****NEED CASE IF DROP_RATE = 100%*** make MAX = -1.0, and MEDIAN = -1.0
 		# drop_rate = sublist2[len(sublist2)-3] 
@@ -69,7 +69,7 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 
 		#parse times to float
-		times = [float(x.split()[len(x.split())-2][5:]) for x in sublist1]
+		times = [float(x.split()[len(x.split())-2][5:]) if not isinstance(x, float) else x for x in sublist1]
 
 		#add times to first file host:[RTTs]
 		raw_file[host] = times
@@ -104,9 +104,9 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 	with open(aggregated_ping_output_filename, 'w') as apo:
 		json.dump(aggr_file, apo)
 
-	print("DONE")
+	# print("DONE")
 
-run_ping("alexa_top_100", 10, "rtt_a_raw", "rtt_a_agg")
+run_ping(["360.com"], 10, "rtt_a_raw.json", "rtt_a_agg.json")
 
 def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 
@@ -133,7 +133,7 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 	MEDIAN = "median_rtt"
 
 	x_values, y_values = [],[] 
-	my_filepath = output_cdf_filename + ".pdf"
+	my_filepath = output_cdf_filename
 
 	init_x_val = 0.0
 
@@ -175,7 +175,7 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 	with backend_pdf.PdfPages(my_filepath) as pdf:
 		pdf.savefig()
 
-plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
+# plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
 
 
 def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
@@ -187,6 +187,7 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 	with open(raw_ping_results_filename) as rpr:
 		data = json.load(rpr)
 	for hostname, pings in data.items():
+		pings = filter(lambda a: a != -1.0, pings)\
 		plt.plot(pings, np.linspace(0,1,len(pings)), label=hostname)
 	plt.legend()
 	plt.grid() # Show grid lines, which makes the plot easier to read.
