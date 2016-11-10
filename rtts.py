@@ -13,6 +13,8 @@ from matplotlib.backends import backend_pdf
 with open("alexa_top_100") as filename:
 	top_100 = filename.read().split()
 
+top_100.remove('360.com')
+
 def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_output_filename):
 	"""
 	outputs two json files: 
@@ -37,13 +39,17 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		)
 
 		out, error = ping.communicate()
-		data = out.decode("utf-8") 
-		parse = data.split('\n')
+		data = out.decode("utf-8")
 
+
+		marker = re.findall('---.*---', data)[0] #should be like "--- HELLO WORLD ping statistics ---"
+		parse = data.split('\n') #should be a list of all elements in the string
+
+		print(data)
 		print(parse)
 
-		marker = "--- " + host + " ping statistics ---"
-		ind=parse.index(marker)
+		ind = parse.index(marker)
+		
 		sublist1 = parse[1:ind-1] #use this to extract times
 		sublist1 = [x if not x.startswith("Request timeout for") else -1.0 for x in sublist1]
 		sublist2 = parse[ind:][1].split() #use this to extract drop rate
@@ -57,8 +63,13 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 		substring = parse[ind:][1]
 
-		drop_rate = re.findall(r'\d+%', substring)[0]
+		print(substring.split())
+
+		drop_rate = re.findall('\d+\.\d+%', substring)[0]
+		print(drop_rate)
 		drop_rate = float(drop_rate[:len(drop_rate) - 1])
+
+		print(drop_rate)
 
 		if drop_rate == 100.0:
 
@@ -106,7 +117,7 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 	print("DONE")
 
-run_ping(top_100, 10, "rtt_a_raw", "rtt_a_agg")
+run_ping(['360.com'], 5, "rtt_a_raw.json", "rtt_a_agg.json")
 
 def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 
@@ -175,7 +186,7 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 	with backend_pdf.PdfPages(my_filepath) as pdf:
 		pdf.savefig()
 
-plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
+#plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
 
 
 def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
