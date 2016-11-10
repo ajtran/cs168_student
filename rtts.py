@@ -37,7 +37,6 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		out, error = ping.communicate()
 		data = out.decode("utf-8")
 
-
 		parse = data.split('\n') #should be a list of all elements in the string
 
 		marker = re.findall("---\s.*\sping\sstatistics\s---", data)[0]
@@ -48,22 +47,10 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 		sublist1 = [x if not x.startswith("Request timeout for") else -1.0 for x in sublist1]
 		sublist2 = parse[ind:][1].split() #use this to extract drop rate
 
-		# print(sublist1)
-		# print(sublist2)
-
-		#calculate drop rate ****NEED CASE IF DROP_RATE = 100%*** make MAX = -1.0, and MEDIAN = -1.0
-		# drop_rate = sublist2[len(sublist2)-3] 
-		# drop_rate = float(drop_rate[:len(drop_rate)-1])
-
 		substring = parse[ind:][1]
 
-		# print(substring.split())
-
 		drop_rate = re.findall('[\d+\.]*\d+%', substring)[0]
-		# print(drop_rate)
 		drop_rate = float(drop_rate[:len(drop_rate) - 1])
-
-		# print(drop_rate)
 
 		if drop_rate == 100.0:
 
@@ -107,11 +94,6 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 	with open(aggregated_ping_output_filename, 'w') as apo:
 		json.dump(aggr_file, apo)
-
-
-	print("DONE")
-
-run_ping(top_100, 5, "rtt_a_raw.json", "rtt_a_agg.json")
 
 
 def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
@@ -180,9 +162,6 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 
 	with backend_pdf.PdfPages(my_filepath) as pdf:
 		pdf.savefig()
-
-
-plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
 
 
 
