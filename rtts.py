@@ -184,12 +184,6 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 	with backend_pdf.PdfPages(my_filepath) as pdf:
 		pdf.savefig()
 
-<<<<<<< HEAD
-# plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
-=======
-#plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
->>>>>>> 094fc8994a870cbd0cb50cb2cb46af9acdbbb9e6
-
 
 def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 
