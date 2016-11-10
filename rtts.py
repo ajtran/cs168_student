@@ -111,7 +111,7 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 	print("DONE")
 
-run_ping(top_100, 5, "rtt_a_raw.json", "rtt_a_agg.json")
+# run_ping(top_100, 5, "rtt_a_raw.json", "rtt_a_agg.json")
 
 
 def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
@@ -182,7 +182,7 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 		pdf.savefig()
 
 
-plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
+# plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
 
 
 
@@ -204,6 +204,8 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 	with backend_pdf.PdfPages(output_cdf_filename) as pdf:
 		pdf.savefig()
 
+
+run_ping(["quora.com"], 10, "quora_raw.json", "quora_agg.json")
 ## comment this in to run experiment a
 # run_ping(top_100, 10, "rtt_a_raw.json", "rtt_a_agg.json")
 
@@ -211,7 +213,7 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 # plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.pdf")
 
 ## comment this in to run experiment b
-run_ping(["google.com", "todayhumor.co.kr", "zanvarsity.ac.tz", "taobao.com"], 500, "rtt_b_raw.json", "rtt_b_agg.json")
+# run_ping(["google.com", "todayhumor.co.kr", "zanvarsity.ac.tz", "taobao.com"], 500, "rtt_b_raw.json", "rtt_b_agg.json")
 
 ## comment this in to run plot for experiment b
 # plot_ping_cdf("rtt_b_raw.json", "rtt_b.pdf")
