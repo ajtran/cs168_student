@@ -25,7 +25,7 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 	aggr_file = {}
 
 	for host in hostnames:
-
+		print(host)
 		#send a ping to host
 		ping = subprocess.Popen(
 		    ["ping", "-c", str(num_packets), host],
@@ -58,7 +58,7 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 		# print(substring.split())
 
-		drop_rate = re.findall('\d+\.\d+%', substring)[0]
+		drop_rate = re.findall('[\d+\.]*\d+%', substring)[0]
 		# print(drop_rate)
 		drop_rate = float(drop_rate[:len(drop_rate) - 1])
 
@@ -164,10 +164,10 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 
 		x_val = x_val + 0.1
 
-	print(x_values)
-	print(y_values)
+	print(len(x_values))
+	print(len(y_values))
 
-	plot.plot(x_values, y_values, label= "CDF: Aggregate Median RTT")
+	plot.plot(x_values, y_values, label="CDF: Aggregate Median RTT")
 	plot.legend() # This shows the legend on the plot.
 	plot.grid() # Show grid lines, which makes the plot easier to read.
 	plot.xlabel("median (ms)") # Label the x-axis.
@@ -186,12 +186,12 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 	with open(raw_ping_results_filename) as rpr:
 		data = json.load(rpr)
 	for hostname, pings in data.items():
-		pings = filter(lambda ele: ele != -1.0, pings)\
-		plt.plot(pings, np.linspace(0,1,len(pings)), label=hostname)
-	plt.legend()
-	plt.grid() # Show grid lines, which makes the plot easier to read.
- 	plt.xlabel("miliseconds") # Label the x-axis.
- 	plt.ylabel("Cumulative Fraction") # Label the y-axis.
+		pings = filter(lambda ele: ele != -1.0, pings)
+		plot.plot(pings, np.linspace(0,1,len(pings)), label=hostname)
+	plot.legend()
+	plot.grid() # Show grid lines, which makes the plot easier to read.
+ 	plot.xlabel("miliseconds") # Label the x-axis.
+ 	plot.ylabel("Cumulative Fraction") # Label the y-axis.
 	with backend_pdf.PdfPages(output_cdf_filename) as pdf:
 		pdf.savefig()
 
@@ -202,7 +202,7 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 # plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.pdf")
 
 ## comment this in to run experiment b
-# run_ping(["google.com", "todayhumor.co.kr", "zanvarsity.ac.tz", "taobao.com"], 500, "rtt_b_raw.json", "rtt_b_agg.json")
+run_ping(["google.com", "todayhumor.co.kr", "zanvarsity.ac.tz", "taobao.com"], 500, "rtt_b_raw.json", "rtt_b_agg.json")
 
 ## comment this in to run plot for experiment b
 # plot_ping_cdf("rtt_b_raw.json", "rtt_b.pdf")
