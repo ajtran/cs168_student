@@ -129,16 +129,12 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 		data = json.load(apr) #of form hostname : {"drop_rate": drop_rate, "max_rtt": MAX, "median_rtt": median}
 	median_rtts_list = []
 
-	print(data.values())
-
 	for dr_med in data.values():
 		#make sure we do not plot hosts that were not reached
 		if dr_med[MEDIAN] != -1.0:
 			median_rtts_list.append(dr_med[MEDIAN])
 
 	median_rtts_list.sort()
-
-	print(median_rtts_list)
 
 	MAX_MED = median_rtts_list[len(median_rtts_list)-1]
 	
@@ -151,13 +147,10 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 
 		x_val = x_val + 0.1
 
-	print(len(x_values))
-	print(len(y_values))
-
 	plot.plot(x_values, y_values, label="CDF: Aggregate Median RTT")
 	plot.legend() # This shows the legend on the plot.
 	plot.grid() # Show grid lines, which makes the plot easier to read.
-	plot.xlabel("median (ms)") # Label the x-axis.
+	plot.xlabel("Median (ms)") # Label the x-axis.
 	plot.ylabel("Cumulutive Fraction") # Label the y-axis.
 
 	with backend_pdf.PdfPages(my_filepath) as pdf:
@@ -177,7 +170,7 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 		plot.plot(pings, np.linspace(0,1,len(pings)), label=hostname)
 	plot.legend()
 	plot.grid() # Show grid lines, which makes the plot easier to read.
- 	plot.xlabel("miliseconds") # Label the x-axis.
+ 	plot.xlabel("Ping Time (ms)") # Label the x-axis.
  	plot.ylabel("Cumulative Fraction") # Label the y-axis.
 	with backend_pdf.PdfPages(output_cdf_filename) as pdf:
 		pdf.savefig()
@@ -187,10 +180,10 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 # run_ping(top_100, 10, "rtt_a_raw.json", "rtt_a_agg.json")
 
 ## coment this in to run plot for experiment a
-# plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.pdf")
+plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.png")
 
 ## comment this in to run experiment b
 # run_ping(["google.com", "todayhumor.co.kr", "zanvarsity.ac.tz", "taobao.com"], 500, "rtt_b_raw.json", "rtt_b_agg.json")
 
 ## comment this in to run plot for experiment b
-# plot_ping_cdf("rtt_b_raw.json", "rtt_b.pdf")
+# plot_ping_cdf("rtt_b_raw.json", "rtt_b.png")
