@@ -184,7 +184,7 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 		pdf.savefig()
 
 ## comment this in to run experiment a
-# run_ping(top_100, 10, "rtt_a_raw.json", "rtt_a_agg.json")
+run_ping(top_100, 10, "rtt_a_raw.json", "rtt_a_agg.json")
 
 ## coment this in to run plot for experiment a
 # plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.pdf")
