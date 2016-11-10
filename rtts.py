@@ -180,7 +180,7 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 # run_ping(top_100, 10, "rtt_a_raw.json", "rtt_a_agg.json")
 
 ## coment this in to run plot for experiment a
-plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.png")
+# plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.png")
 
 ## comment this in to run experiment b
 # run_ping(["google.com", "todayhumor.co.kr", "zanvarsity.ac.tz", "taobao.com"], 500, "rtt_b_raw.json", "rtt_b_agg.json")
