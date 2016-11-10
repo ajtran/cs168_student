@@ -13,7 +13,6 @@ from matplotlib.backends import backend_pdf
 with open("alexa_top_100") as filename:
 	top_100 = filename.read().split()
 
-top_100.remove('360.com')
 
 def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_output_filename):
 	"""
@@ -75,7 +74,7 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 			aggr = {"drop_rate": drop_rate, "max_rtt": -1.0, "median_rtt": -1.0}
 			aggr_file[host] = aggr
-			raw_file[host] = []
+			raw_file[host] = sublist1 #assume sublist1 of form [-1, -1, ... , -1]
 			continue
 
 
@@ -117,7 +116,7 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 	print("DONE")
 
-run_ping(['360.com'], 5, "rtt_a_raw.json", "rtt_a_agg.json")
+run_ping(top_100, 5, "rtt_a_raw.json", "rtt_a_agg.json")
 
 def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 
@@ -186,7 +185,7 @@ def plot_median_rtt_cdf(agg_ping_results_filename, output_cdf_filename):
 	with backend_pdf.PdfPages(my_filepath) as pdf:
 		pdf.savefig()
 
-#plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
+plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a")
 
 
 def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
