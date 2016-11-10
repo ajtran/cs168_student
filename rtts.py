@@ -13,8 +13,6 @@ from matplotlib.backends import backend_pdf
 with open("alexa_top_100") as filename:
 	top_100 = filename.read().split()
 
-top_100.remove('360.com')
-
 def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_output_filename):
 	"""
 	outputs two json files: 
@@ -23,9 +21,6 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 		2) dictionary of hostnames : {"drop_rate": drop_rate1, "max_rtt": max_rtt1, "mediam_rtt": median_rtt1}
 	"""
-
-	# print("HELLLLOOOOO")
-
 	raw_file = {}
 	aggr_file = {}
 
@@ -44,8 +39,6 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 		parse = data.split('\n') #should be a list of all elements in the string
 
-		# print(parse)
-
 		marker = re.findall("---\s.*\sping\sstatistics\s---", data)[0]
 		ind=parse.index(marker)
 
@@ -63,13 +56,13 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 		substring = parse[ind:][1]
 
-		print(substring.split())
+		# print(substring.split())
 
 		drop_rate = re.findall('\d+\.\d+%', substring)[0]
-		print(drop_rate)
+		# print(drop_rate)
 		drop_rate = float(drop_rate[:len(drop_rate) - 1])
 
-		print(drop_rate)
+		# print(drop_rate)
 
 		if drop_rate == 100.0:
 
@@ -77,7 +70,6 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 			aggr_file[host] = aggr
 			raw_file[host] = []
 			continue
-
 
 		#parse times to float
 		times = [float(x.split()[len(x.split())-2][5:]) if not isinstance(x, float) else x for x in sublist1]
@@ -202,3 +194,15 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
  	plt.ylabel("Cumulative Fraction") # Label the y-axis.
 	with backend_pdf.PdfPages(output_cdf_filename) as pdf:
 		pdf.savefig()
+
+## comment this in to run experiment a
+# run_ping(top_100, 10, "rtt_a_raw.json", "rtt_a_agg.json")
+
+## coment this in to run plot for experiment a
+# plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.pdf")
+
+## comment this in to run experiment b
+# run_ping(["google.com", "todayhumor.co.kr", "zanvarsity.ac.tz", "taobao.com"], 500, "rtt_b_raw.json", "rtt_b_agg.json")
+
+## comment this in to run plot for experiment b
+# plot_ping_cdf("rtt_b_raw.json", "rtt_b.pdf")
