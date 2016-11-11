@@ -171,6 +171,7 @@ def count_different_dns_responses(filename1, filename2):
 
 #run_dig(["yahoo.com"],"dig_output.json")
 
-get_average_ttls("dig_output.json")
-get_average_times("dig_output.json")
+run_dig(top_100, "dig_output.json")
+# get_average_ttls("dig_output.json")
+# get_average_times("dig_output.json")
 
