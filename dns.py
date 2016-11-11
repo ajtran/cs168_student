@@ -62,8 +62,8 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 			
 			answer = []
 			for q in Query:
-
-				answer.append({UT.QUERIED_NAME_KEY:q[0], UT.ANSWER_DATA_KEY:q[4], UT.TYPE_KEY: q[3], UT.TTL_KEY: q[1]})
+				print(q)
+				answer.append({UT.QUERIED_NAME_KEY:q[0], UT.ANSWER_DATA_KEY:q[4], UT.TYPE_KEY: q[3], UT.TTL_KEY: int(q[1])})
 
 
 			Query_dict = {UT.TIME_KEY:time,UT.ANSWERS_KEY:answer}
@@ -80,9 +80,97 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 		json.dump(dig_output, rpo)
 
 
+def get_average_ttls(filename):
 
-	 
+	"""
+	It should return a 4-item list that contains the following averages, in this order:
+	What’s the average TTL of the root servers?
+	What’s the average TTL for the tld servers?
+	What’s the average TTL for any other name servers? (e.g., for google.com, this includes the google.com name server).
+	What’s the average TTL for the terminating CNAME or A entry?
 
-#run_dig(top_100,"bleh")
+	"""
+	root_servers, tld_servers, other_servers, A_CN_servers = [], [], [], []
+	rs, tld, A, CN = ".", "com.", "A", "cname"
 
+
+	with open(filename) as rpr:
+		data = json.load(rpr)
+
+	
+	for queries in data:
+
+		for q_list in queries[UT.QUERIES_KEY]:
+
+			for query in q_list[UT.ANSWERS_KEY]:
+
+				if query[UT.QUERIED_NAME_KEY] == rs:
+					root_servers.append(query[UT.TTL_KEY])
+				elif query[UT.QUERIED_NAME_KEY] == tld:
+					tld_servers.append(query[UT.TTL_KEY])
+				elif query[UT.TYPE_KEY] == A or query[UT.TYPE_KEY] == CN:
+					A_CN_servers.append(query[UT.TTL_KEY])
+				else:
+					other_servers.append(query[UT.TTL_KEY])
+
+	# print(root_servers)
+	# print(tld_servers)
+	# print(other_servers)
+	# print(A_CN_servers)
+
+	average_root_ttl = reduce(lambda x, y: x + y, root_servers)/len(root_servers)
+	average_TLD_ttl = reduce(lambda x, y: x + y, tld_servers)/len(tld_servers)
+	average_other_ttl = reduce(lambda x, y: x + y, other_servers)/len(other_servers)
+	average_terminating_ttl = reduce(lambda x, y: x + y, A_CN_servers)/len(A_CN_servers)
+
+	rtn = [average_root_ttl, average_TLD_ttl, average_other_ttl, average_terminating_ttl]
+	print(rtn)
+
+	return rtn
+
+def get_average_times(filename):
+
+	site_rslv_times = []
+	site_final_req_times = []
+
+	with open(filename) as rpr:
+		data = json.load(rpr)
+
+	
+	for queries in data:
+
+		for q_list in queries[UT.QUERIES_KEY]:
+
+			site_rslv_times.append(q_list[UT.TIME_KEY])
+
+			for query in q_list[UT.ANSWERS_KEY]:
+
+				if query[UT.TYPE_KEY] == "A" or query[UT.TYPE_KEY] == "cname":
+
+					site_final_req_times.append(q_list[UT.TIME_KEY])
+
+	print(site_rslv_times)
+	print(site_final_req_times)
+
+	avg_rslv_time = reduce(lambda x, y: x + y, site_rslv_times)/len(site_rslv_times)
+	avg_final_req_time = reduce(lambda x, y: x + y, site_rslv_times)/len(site_rslv_times)
+
+	print ([avg_rslv_time,avg_final_req_time])
+	return [avg_rslv_time,avg_final_req_time]
+			
+
+				
+
+def generate_time_cdfs(json_filename, output_filename):
+
+	pass
+
+def count_different_dns_responses(filename1, filename2):
+
+	pass
+
+#run_dig(["yahoo.com"],"dig_output.json")
+
+get_average_ttls("dig_output.json")
+get_average_times("dig_output.json")
 
