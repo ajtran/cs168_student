@@ -29,51 +29,54 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 	hostnames = hostname_filename
 
 	for host in hostnames:
-		dig_host = {}
-		dig = subprocess.Popen(
-		    ["dig", "+trace", "+tries=1", "+nofail", host],
-		    stdout = subprocess.PIPE,
-		    stderr = subprocess.PIPE
-		)
+		for _ in range(5):
+			dig_host = {}
+			dig = subprocess.Popen(
+			    ["dig", "+trace", "+tries=1", "+nofail", host],
+			    stdout = subprocess.PIPE,
+			    stderr = subprocess.PIPE
+			)
 
-		out, error = dig.communicate()
-		data = out.decode("utf-8")
-		parse = data.split('\n')
+			out, error = dig.communicate()
+			data = out.decode("utf-8")
+			parse = data.split('\n')
 
-		queries = parse[3:]
+			queries = parse[3:]
 
-		dig_host[UT.NAME_KEY] = host
-		dig_host[UT.SUCCESS_KEY] = True
-		dig_host[UT.QUERIES_KEY] = []
+			dig_host[UT.NAME_KEY] = host
+			dig_host[UT.SUCCESS_KEY] = True
+			dig_host[UT.QUERIES_KEY] = []
 
-		markers = re.findall(";;\sReceived\s\d+\sbytes\sfrom\s.+\sin\s\d+\sms", data)
+			markers = re.findall(";;\sReceived\s\d+\sbytes\sfrom\s.+\sin\s\d+\sms", data)
 
-		low_index = 0
-		
-		for mark in markers:
-
-			high_index = queries.index(mark)
-			Query = queries[low_index:high_index]
-			Query = [filter(None, re.split("[ \t]+", x)) for x in Query]
-
-			time = mark.split()
-			time = int(time[len(time)-2])
-
+			low_index = 0
 			
-			answer = []
-			for q in Query:
-				print(q)
-				answer.append({UT.QUERIED_NAME_KEY:q[0], UT.ANSWER_DATA_KEY:q[4], UT.TYPE_KEY: q[3], UT.TTL_KEY: int(q[1])})
+			for mark in markers:
+
+				high_index = queries.index(mark)
+				Query = queries[low_index:high_index]
+				Query = [filter(None, re.split("[ \t]+", x)) for x in Query]
+
+				time = mark.split()
+				time = int(time[len(time)-2])
+				
+				answer = []
+				for q in Query:
+					# print(q)
+					answer.append({UT.QUERIED_NAME_KEY:q[0], UT.ANSWER_DATA_KEY:q[4], UT.TYPE_KEY: q[3], UT.TTL_KEY: int(q[1])})
 
 
-			Query_dict = {UT.TIME_KEY:time,UT.ANSWERS_KEY:answer}
+				Query_dict = {UT.TIME_KEY:time,UT.ANSWERS_KEY:answer}
 
-			dig_host[UT.QUERIES_KEY] = Query_dict
+				if UT.QUERIES_KEY not in dig_host.keys():
+					dig_host[UT.QUERIES_KEY] = [Query_dict]
+				else:
+					dig_host[UT.QUERIES_KEY].append(Query_dict)
 
-			low_index = high_index+2
+				low_index = high_index+2
 
 
-		dig_output.append(dig_host)
+			dig_output.append(dig_host)
 
 	
 	with open(output_filename, 'w') as rpo:
@@ -157,20 +160,31 @@ def get_average_times(filename):
 
 	print ([avg_rslv_time,avg_final_req_time])
 	return [avg_rslv_time,avg_final_req_time]
-			
-
-				
+	
 
 def generate_time_cdfs(json_filename, output_filename):
+	with open(json_filename) as filename:
+		data = json.load(filename)
 
-	pass
+	# i assume we have to call get average times(filename)
+
+	for hostname, pings in data.items():
+		pings = filter(lambda ele: ele != -1.0, pings) #hmmm what do i change here?
+		plot.plot(pings, np.linspace(0,1,len(pings)), label=hostname) #hm... what do i plot instead?
+	plot.legend()
+	plot.grid() # Show grid lines, which makes the plot easier to read.
+ 	plot.xlabel("milliseconds") # Label the x-axis.
+ 	plot.ylabel("Cumulative Fraction") # Label the y-axis.
+	with backend_pdf.PdfPages(output_filename) as pdf:
+		pdf.savefig()
+
 
 def count_different_dns_responses(filename1, filename2):
 
 	pass
 
-#run_dig(["yahoo.com"],"dig_output.json")
+run_dig(top_100, "dns_output_1.json")
 
-get_average_ttls("dig_output.json")
-get_average_times("dig_output.json")
+# get_average_ttls("dig_output.json")
+# get_average_times("dig_yahoo.json")
 
