@@ -1,1 +1,22 @@
-{"todayhumor.co.kr": {"median_rtt": 90.2, "drop_rate": 0.0, "max_rtt": 140.0}, "google.com": {"median_rtt": 2.67, "drop_rate": 0.0, "max_rtt": 12.6}, "taobao.com": {"median_rtt": 258.5, "drop_rate": 73.0, "max_rtt": 307.0}, "zanvarsity.ac.tz": {"median_rtt": 396.0, "drop_rate": 0.0, "max_rtt": 529.0}}
+{
+  "todayhumor.co.kr": {
+    "median_rtt": 15.778500000000001,
+    "drop_rate": 0.0,
+    "max_rtt": 600.658
+  },
+  "google.com": {
+    "median_rtt": 16.2175,
+    "drop_rate": 0.0,
+    "max_rtt": 388.994
+  },
+  "taobao.com": {
+    "median_rtt": 174.8425,
+    "drop_rate": 0.0,
+    "max_rtt": 406.91
+  },
+  "zanvarsity.ac.tz": {
+    "median_rtt": 400.0375,
+    "drop_rate": 0.0,
+    "max_rtt": 783.782
+  }
+}

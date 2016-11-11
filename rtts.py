@@ -56,6 +56,8 @@ def run_ping(hostnames, num_packets, raw_ping_output_filename, aggregated_ping_o
 
 			aggr = {"drop_rate": drop_rate, "max_rtt": -1.0, "median_rtt": -1.0}
 			aggr_file[host] = aggr
+			while len(sublist1) < 10:
+				sublist1.append(-1.0)
 			raw_file[host] = sublist1 #assume sublist1 of form [-1, -1, ... , -1]
 			continue
 
@@ -180,10 +182,10 @@ def plot_ping_cdf(raw_ping_results_filename, output_cdf_filename):
 # run_ping(top_100, 10, "rtt_a_raw.json", "rtt_a_agg.json")
 
 ## coment this in to run plot for experiment a
-# plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.png")
+plot_median_rtt_cdf("rtt_a_agg.json", "rtt_a.png")
 
 ## comment this in to run experiment b
 # run_ping(["google.com", "todayhumor.co.kr", "zanvarsity.ac.tz", "taobao.com"], 500, "rtt_b_raw.json", "rtt_b_agg.json")
 
 ## comment this in to run plot for experiment b
-# plot_ping_cdf("rtt_b_raw.json", "rtt_b.png")
+plot_ping_cdf("rtt_b_raw.json", "rtt_b.png")
