@@ -60,11 +60,17 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 				time = mark.split()
 				time = int(time[len(time)-2])
 				
+			
 				answer = []
+
 				for q in Query:
-					# print(q)
+				
 					answer.append({UT.QUERIED_NAME_KEY:q[0], UT.ANSWER_DATA_KEY:q[4], UT.TYPE_KEY: q[3], UT.TTL_KEY: int(q[1])})
 
+
+				# for i in answer:
+
+				# 	print(i)
 
 				Query_dict = {UT.TIME_KEY:time,UT.ANSWERS_KEY:answer}
 
@@ -74,6 +80,8 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 					dig_host[UT.QUERIES_KEY].append(Query_dict)
 
 				low_index = high_index+2
+
+			# print(dig_host)
 
 
 			dig_output.append(dig_host)
@@ -183,8 +191,9 @@ def count_different_dns_responses(filename1, filename2):
 
 	pass
 
-run_dig(top_100, "dns_output_1.json")
+# run_dig(top_100, "dns_output_1.json")
 
+run_dig(["google.com"], "dig_output.json")
 # get_average_ttls("dig_output.json")
-# get_average_times("dig_yahoo.json")
+# get_average_times("dig_output.json")
 
