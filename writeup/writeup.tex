@@ -33,7 +33,6 @@
 \begin{center}
 \includegraphics[scale=0.5]{rtt_a}
 \end{center}
-FIXME: NEED THE RIGHT PLOT
 
 \end{itemize}
 
@@ -64,7 +63,6 @@ taobao.com & 266.0 & 272.0 & 71.0\% \\
 \begin{center}
 \includegraphics[scale=0.5]{rtt_b}
 \end{center}
-FIXME: NEED THE RIGHT PLOT
 
 \end{itemize}
 
@@ -106,27 +104,47 @@ One reason why the ping time is not equal to the speed of light time is because 
 
 \item Which ASes are Berkeley directly connected to?
 
-FIXME: ANSWER HERE
+AS 25 and AS 2152 are directly connected to Berkeley.
 
 \item Which traceroute traverses the most number of ASes? How about the least number of ASes?
 
-FIXME: ANSWER HERE
+[I THINK] zanvarsity.ac.tz traverses the most number of ASes. berkeley.edu traverses the least number of ASes.
 
 \item Which websites' routes are load-balanced?
 
-FIXME: ANSWER HERE
+[I THINK] google.com, facebook.com, allspice.lcs.mit.edu, todayhumor.co.kr, www.city.kobe.lg.jp, and zanvarsity.ac.tz are all load-balanced.
 
 \item Are the observed routes stable over multiple runs? For each website, how many unique routes did you observe?
 
-FIXME: ANSWER HERE
+\begin{center}
+\begin{tabular}{ || c | c | c || }
+\hline
+Website & Stable? & Number of Unique Routes \\
+\hline \hline
+google.com & Yes & 0 \\
+\hline
+facebook.com & Yes & 0 \\
+\hline
+www.berkeley.edu & Yes & 0 \\
+\hline
+allspice.lcs.mit.edu & Yes & 0 \\
+\hline
+todayhumor.co.kr & Maybe & ? \\
+\hline
+www.city.kobe.lg.jp & Maybe & ? \\
+\hline
+www.vutbr.cz & Maybe & ? \\
+\hline
+zanvarsity.ac.tz & Maybe & ? \\
+\hline
+\end{tabular}
+\end{center}
 
 \item Using one sentence, please explain one advantage of having stable routes.
 
-FIXME: ANSWER HERE
+One advantage of having stable routes is having more consistent latency.
 
 \item \emph{[Optional]} Make a graph of the ASes and their connectivity.
-
-FIXME: ANSWER HERE
 
 \end{itemize}
 
@@ -136,20 +154,33 @@ FIXME: ANSWER HERE
 
 \item How many hops do you observe in each route when you run traceroute from your computer? How many hops do you observe in the reverse direction?
 
-FIXME: ANSWER HERE
+\begin{center}
+\begin{tabular}{ || c | c | c || }
+\hline
+Router Server & Hops To & Hops From \\
+\hline \hline
+tpr-route-server.saix.net & 13 & 11 \\
+\hline
+route-views.oregon-ix.net & 8 & 7 \\
+\hline
+route-views.on.bb.telus.com & 10 & 15 \\
+\hline
+route-server.ip-plus.net & 14 & 11 \\
+\hline
+\end{tabular}
+\end{center}
 
 \item Are these routes symmetric? How many are symmetric and how many are not?
 
-FIXME: ANSWER HERE
+These routes are not symmetric. All four of them are not.
 
 \item What might cause asymmetric routes? List one or two reasons.
 
-FIXME: ANSWER HERE
+A factor that might cause asymmetric routes are the latency in the paths between routers go up, thus causing there to be a shorter path.
 
 \end{itemize}
 \end{enumerate}
 
-\newpage
 \subsection*{DNS}
 
 \begin{enumerate}
