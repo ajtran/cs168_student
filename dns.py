@@ -253,24 +253,27 @@ def count_different_dns_responses(filename1, filename2):
 
 	#convert to set:
 
+	hosts1_set = {}
+
+	
+	for keys in hosts1.keys():
+
+		hosts1_set[keys] = []
+
 	for host_data in hosts1:
 
 		data = hosts1[host_data]
 
 		for q_info in data:
 
-			print(data)
 			ip_set = set()
-			print(q_info)
+			# print(q_info)
 			for q in q_info:
-
-			
 				ip_set.add(q[UT.ANSWER_DATA_KEY])
+			
+			hosts1_set[host_data].append(ip_set)
 
-			hosts1[host_data].remove(q_info)
-			hosts1[host_data].append(ip_set)
-
-
+	print(hosts1_set)
 
 
 	# #get all the terminating queries from filename2
