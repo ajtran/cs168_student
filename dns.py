@@ -29,7 +29,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 	hostnames = hostname_filename
 
 	for host in hostnames:
-		for _ in range(5):
+		for _ in range(1):
 			dig_host = {}
 			if dns_query_server:
 				dig = subprocess.Popen(
@@ -47,48 +47,67 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 			out, error = dig.communicate()
 			data = out.decode("utf-8")
 			parse = data.split('\n')
-
-			queries = parse[3:]
+			
+			if dns_query_server:
+				queries = parse[10:]
+			else:
+				queries = parse[3:]
+			
+			print(queries)
 
 			dig_host[UT.NAME_KEY] = host
 			dig_host[UT.SUCCESS_KEY] = True
 			dig_host[UT.QUERIES_KEY] = []
-
-			markers = re.findall(";;\sReceived\s\d+\sbytes\sfrom\s.+\sin\s\d+\sms", data)
-
-			low_index = 0
 			
-			for mark in markers:
-
-				high_index = queries.index(mark)
-				Query = queries[low_index:high_index]
-				Query = [filter(None, re.split("[ \t]+", x)) for x in Query]
-
-				time = mark.split()
-				time = int(time[len(time)-2])
-				
-			
+			if dns_query_server:
+				markers = re.findall(";;\s.+\sSECTION:", data)[1:]
 				answer = []
-
-				for q in Query:
+				for mark in markers:
+					low_index = queries.index(mark)+1
+					Query = []
+					while queries[low_index] != '':
+						Query.append(queries[low_index])
+						low_index += 1
 				
+				Query = [filter(None, re.split("[ \t]+", x)) for x in Query]
+				for q in Query:
 					answer.append({UT.QUERIED_NAME_KEY:q[0], UT.ANSWER_DATA_KEY:q[4], UT.TYPE_KEY: q[3], UT.TTL_KEY: int(q[1])})
-
-
-				# for i in answer:
-
-				# 	print(i)
+	
+				time = re.findall("\s\d+\smsec", data)[0]
+				time = int(time[1:len(time)-5])
 
 				Query_dict = {UT.TIME_KEY:time,UT.ANSWERS_KEY:answer}
 
-				if UT.QUERIES_KEY not in dig_host.keys():
-					dig_host[UT.QUERIES_KEY] = [Query_dict]
-				else:
-					dig_host[UT.QUERIES_KEY].append(Query_dict)
+				dig_host[UT.QUERIES_KEY] = [Query_dict]
+			else:
+				markers = re.findall(";;\sReceived\s\d+\sbytes\sfrom\s.+\sin\s\d+\sms", data)
+			
+				low_index = 0
+			
+				for mark in markers:
 
-				low_index = high_index+2
+					high_index = queries.index(mark)
+					Query = queries[low_index:high_index]
+					Query = [filter(None, re.split("[ \t]+", x)) for x in Query]
 
-			# print(dig_host)
+					time = mark.split()
+					time = int(time[len(time)-2])
+				
+			
+					answer = []
+
+					for q in Query:
+				
+						answer.append({UT.QUERIED_NAME_KEY:q[0], UT.ANSWER_DATA_KEY:q[4], UT.TYPE_KEY: q[3], UT.TTL_KEY: int(q[1])})
+
+					Query_dict = {UT.TIME_KEY:time,UT.ANSWERS_KEY:answer}
+
+					if UT.QUERIES_KEY not in dig_host.keys():
+						dig_host[UT.QUERIES_KEY] = [Query_dict]
+					else:
+						dig_host[UT.QUERIES_KEY].append(Query_dict)
+
+					low_index = high_index+2
 
 
 			dig_output.append(dig_host)
@@ -319,9 +338,9 @@ def count_different_dns_responses(filename1, filename2):
 
 
 
-count_different_dns_responses("dns_output_1.json","dns_output_2.json")
+# count_different_dns_responses("dns_output_1.json","dns_output_2.json")
 
-				
+run_dig(["google.com"], "dns_google_arg.json", dns_query_server="190.221.14.35")			
 
 # run 1
 # run_dig(top_100, "dns_output_1.json")
