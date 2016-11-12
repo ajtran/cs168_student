@@ -352,16 +352,33 @@ def count_different_dns_responses(filename1, filename2):
 			
 			hosts2_set[host_data].append(ip_set)
 	
-	print(hosts2_set)
+	
 
-	# for key,values in hosts2.items():
+	meta_hosts_set = {}
 
-	# 	if len(values) == 0:
-	# 		del hosts2[key]
+	for host, sets in hosts1_set.items():
 
-	# print(differences1)
+		meta_set = sets + hosts2_set[host]
 
-	return differences1
+		meta_hosts_set[host] = meta_set
+
+	differences2 = 0
+
+	for sets in meta_hosts_set.values():
+
+		seen = []
+
+		for q_set in sets:
+
+			if q_set not in seen:
+
+				seen.append(q_set)
+		if len(seen) > 1:
+
+			differences2 = differences2 + len(seen) -1
+	print(differences1,differences2)
+
+	return [differences1, differences2]
 
 
 
