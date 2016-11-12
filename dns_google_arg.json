@@ -1,0 +1,67 @@
+[
+  {
+    "Name": "google.com",
+    "Success": true,
+    "Queries": [
+      {
+        "Time in millis": 309,
+        "Answers": [
+          {
+            "Queried name": "google.com.",
+            "Type": "A",
+            "Data": "172.217.28.14",
+            "TTL": 75
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns3.google.com.",
+            "TTL": 316851
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns2.google.com.",
+            "TTL": 316851
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns4.google.com.",
+            "TTL": 316851
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns1.google.com.",
+            "TTL": 316851
+          },
+          {
+            "Queried name": "ns3.google.com.",
+            "Type": "A",
+            "Data": "216.239.36.10",
+            "TTL": 290191
+          },
+          {
+            "Queried name": "ns2.google.com.",
+            "Type": "A",
+            "Data": "216.239.34.10",
+            "TTL": 290028
+          },
+          {
+            "Queried name": "ns4.google.com.",
+            "Type": "A",
+            "Data": "216.239.38.10",
+            "TTL": 290050
+          },
+          {
+            "Queried name": "ns1.google.com.",
+            "Type": "A",
+            "Data": "216.239.32.10",
+            "TTL": 289986
+          }
+        ]
+      }
+    ]
+  }
+]
