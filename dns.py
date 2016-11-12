@@ -221,6 +221,8 @@ def count_different_dns_responses(filename1, filename2):
 
 	for queries in file1_data:
 
+		sub_q = []
+
 		if not queries[UT.NAME_KEY] in hosts1.keys():
 
 			hosts1[queries[UT.NAME_KEY]] = []
@@ -233,44 +235,80 @@ def count_different_dns_responses(filename1, filename2):
 
 					if (rslv_times[UT.TYPE_KEY] == "A") or (rslv_times[UT.TYPE_KEY] == "cname"):
 
-						hosts1[queries[UT.NAME_KEY]].append(rslv_times)
+						sub_q.append(rslv_times)
+
+		if len(sub_q) != 0:
+
+			hosts1[queries[UT.NAME_KEY]].append(sub_q)
+
+	# for q in hosts1.values():
+
+	# 	print("\n")
+	# 	print(q)
 
 	for key,values in hosts1.items():
 
 		if len(values) == 0:
 			del hosts1[key]
 
-	#get all the terminating queries from filename2
-
-	hosts2 = {} #of form host: A queries
-
-	for queries in file2_data:
-
-		if not queries[UT.NAME_KEY] in hosts2.keys():
-
-			hosts2[queries[UT.NAME_KEY]] = []
-
-		for q_data in queries[UT.QUERIES_KEY]:
-
-			for rslv_times in q_data[UT.ANSWERS_KEY]: 
-
-				if (rslv_times[UT.TYPE_KEY] == "A") or (rslv_times[UT.TYPE_KEY] == "cname"):
-
-					hosts2[queries[UT.NAME_KEY]].append(rslv_times)
+	#convert to set:
 
 	for host_data in hosts1:
 
 		data = hosts1[host_data]
+
+		for q_info in data:
+
+			print(data)
+			ip_set = set()
+			print(q_info)
+			for q in q_info:
+
+			
+				ip_set.add(q[UT.ANSWER_DATA_KEY])
+
+			hosts1[host_data].remove(q_info)
+			hosts1[host_data].append(ip_set)
+
+
+
+
+	# #get all the terminating queries from filename2
+
+	# hosts2 = {} #of form host: A queries
+
+	# for queries in file2_data: #queries is dictionary w/ Name, success, and Queries keys {Name: , success:, Queries: []}
+
+	# 	if not queries[UT.NAME_KEY] in hosts2.keys():
+
+	# 		hosts2[queries[UT.NAME_KEY]] = []
+
+	# 	for q_data in queries[UT.QUERIES_KEY]: #q_data of form [{time in millis:, ANSWERS: []}, {}, {} ..., {}]
+
+	# 		for rslv_times in q_data[UT.ANSWERS_KEY]: 
+
+	# 			if (rslv_times[UT.TYPE_KEY] == "A") or (rslv_times[UT.TYPE_KEY] == "cname"):
+
+	# 				hosts2[queries[UT.NAME_KEY]].append(rslv_times)
+
+	# for host_data in hosts1:
+
+	# 	data = hosts1[host_data]
 		
-		ip = data[0][UT.ANSWER_DATA_KEY]
+	# 	ip = data[0][UT.ANSWER_DATA_KEY]
 
-		for req in data:
+	# 	for req in data:
 
-			if ip != req[UT.ANSWER_DATA_KEY]:
+	# 		if ip != req[UT.ANSWER_DATA_KEY]:
 
-				differences1 = differences1 + 1
+	# 			differences1 = differences1 + 1
 
-	print(differences1)
+	# for key,values in hosts2.items():
+
+	# 	if len(values) == 0:
+	# 		del hosts2[key]
+
+	# print(differences1)
 
 	return differences1
 
