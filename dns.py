@@ -29,7 +29,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 	hostnames = hostname_filename
 
 	for host in hostnames:
-		for _ in range(1):
+		for _ in range(5):
 			dig_host = {}
 			if dns_query_server:
 				dig = subprocess.Popen(
@@ -52,8 +52,6 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 				queries = parse[10:]
 			else:
 				queries = parse[3:]
-			
-			print(queries)
 
 			dig_host[UT.NAME_KEY] = host
 			dig_host[UT.SUCCESS_KEY] = True
@@ -62,9 +60,10 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 			if dns_query_server:
 				markers = re.findall(";;\s.+\sSECTION:", data)[1:]
 				answer = []
+				Query = []
+
 				for mark in markers:
 					low_index = queries.index(mark)+1
-					Query = []
 					while queries[low_index] != '':
 						Query.append(queries[low_index])
 						low_index += 1
@@ -340,13 +339,14 @@ def count_different_dns_responses(filename1, filename2):
 
 # count_different_dns_responses("dns_output_1.json","dns_output_2.json")
 
-run_dig(["google.com"], "dns_google_arg.json", dns_query_server="190.221.14.35")			
-
 # run 1
 # run_dig(top_100, "dns_output_1.json")
 
 # run 2 - one hour apart
 # run_dig(top_100, "dns_output_2.json")
+
+# run w/ argentinian server 190.221.14.35
+run_dig(top_100, "dns_output_arg.json", dns_query_server="190.221.14.35")
 
 # (a)
 # print(get_average_ttls("dns_output_1.json"))
