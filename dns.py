@@ -207,7 +207,80 @@ def generate_time_cdfs(json_filename, output_filename):
 
 def count_different_dns_responses(filename1, filename2):
 
-	pass
+	with open(filename1) as rpr:
+		file1_data = json.load(rpr)
+
+	with open(filename2) as rpr:
+		file2_data = json.load(rpr)
+
+	differences1 = 0
+
+	#get all the terminating queries from filename1
+
+	hosts1 = {} #of form host: A queries 
+
+	for queries in file1_data:
+
+		if not queries[UT.NAME_KEY] in hosts1.keys():
+
+			hosts1[queries[UT.NAME_KEY]] = []
+
+		for q_data in queries[UT.QUERIES_KEY]:
+
+			if len(q_data[UT.ANSWERS_KEY]) != 0:
+
+				for rslv_times in q_data[UT.ANSWERS_KEY]: 
+
+					if (rslv_times[UT.TYPE_KEY] == "A") or (rslv_times[UT.TYPE_KEY] == "cname"):
+
+						hosts1[queries[UT.NAME_KEY]].append(rslv_times)
+
+	for key,values in hosts1.items():
+
+		if len(values) == 0:
+			del hosts1[key]
+
+	#get all the terminating queries from filename2
+
+	hosts2 = {} #of form host: A queries
+
+	for queries in file2_data:
+
+		if not queries[UT.NAME_KEY] in hosts2.keys():
+
+			hosts2[queries[UT.NAME_KEY]] = []
+
+		for q_data in queries[UT.QUERIES_KEY]:
+
+			for rslv_times in q_data[UT.ANSWERS_KEY]: 
+
+				if (rslv_times[UT.TYPE_KEY] == "A") or (rslv_times[UT.TYPE_KEY] == "cname"):
+
+					hosts2[queries[UT.NAME_KEY]].append(rslv_times)
+
+	for host_data in hosts1:
+
+		data = hosts1[host_data]
+		
+		ip = data[0][UT.ANSWER_DATA_KEY]
+
+		for req in data:
+
+			if ip != req[UT.ANSWER_DATA_KEY]:
+
+				differences1 = differences1 + 1
+
+	print(differences1)
+
+	return differences1
+
+
+
+
+
+count_different_dns_responses("dns_output_1.json","dns_output_2.json")
+
+				
 
 # run 1
 # run_dig(top_100, "dns_output_1.json")
