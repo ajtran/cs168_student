@@ -262,11 +262,6 @@ def count_different_dns_responses(filename1, filename2):
 
 			hosts1[queries[UT.NAME_KEY]].append(sub_q)
 
-	# for q in hosts1.values():
-
-	# 	print("\n")
-	# 	print(q)
-
 	for key,values in hosts1.items():
 
 		if len(values) == 0:
@@ -276,7 +271,6 @@ def count_different_dns_responses(filename1, filename2):
 
 	hosts1_set = {}
 
-	
 	for keys in hosts1.keys():
 
 		hosts1_set[keys] = []
@@ -294,53 +288,106 @@ def count_different_dns_responses(filename1, filename2):
 			
 			hosts1_set[host_data].append(ip_set)
 
-	print(hosts1_set)
+	for sets in hosts1_set.values():
+
+		seen = []
+
+		for q_set in sets:
+
+			if q_set not in seen:
+
+				seen.append(q_set)
+		if len(seen) > 1:
+
+			differences1 = differences1 + len(seen) -1
+
+	print(differences1)
 
 
-	# #get all the terminating queries from filename2
+	#get all the terminating queries from filename2
+	hosts2 = {} #of form host: A queries 
 
-	# hosts2 = {} #of form host: A queries
+	for queries in file2_data:
 
-	# for queries in file2_data: #queries is dictionary w/ Name, success, and Queries keys {Name: , success:, Queries: []}
+		sub_q = []
 
-	# 	if not queries[UT.NAME_KEY] in hosts2.keys():
+		if not queries[UT.NAME_KEY] in hosts2.keys():
 
-	# 		hosts2[queries[UT.NAME_KEY]] = []
+			hosts2[queries[UT.NAME_KEY]] = []
 
-	# 	for q_data in queries[UT.QUERIES_KEY]: #q_data of form [{time in millis:, ANSWERS: []}, {}, {} ..., {}]
+		for q_data in queries[UT.QUERIES_KEY]:
 
-	# 		for rslv_times in q_data[UT.ANSWERS_KEY]: 
+			if len(q_data[UT.ANSWERS_KEY]) != 0:
 
-	# 			if (rslv_times[UT.TYPE_KEY] == "A") or (rslv_times[UT.TYPE_KEY] == "cname"):
+				for rslv_times in q_data[UT.ANSWERS_KEY]: 
 
-	# 				hosts2[queries[UT.NAME_KEY]].append(rslv_times)
+					if (rslv_times[UT.TYPE_KEY] == "A") or (rslv_times[UT.TYPE_KEY] == "cname"):
 
-	# for host_data in hosts1:
+						sub_q.append(rslv_times)
 
-	# 	data = hosts1[host_data]
-		
-	# 	ip = data[0][UT.ANSWER_DATA_KEY]
+		if len(sub_q) != 0:
 
-	# 	for req in data:
+			hosts2[queries[UT.NAME_KEY]].append(sub_q)
 
-	# 		if ip != req[UT.ANSWER_DATA_KEY]:
+	for key,values in hosts2.items():
 
-	# 			differences1 = differences1 + 1
+		if len(values) == 0:
+			del hosts2[key]
 
-	# for key,values in hosts2.items():
+	#convert to set:
 
-	# 	if len(values) == 0:
-	# 		del hosts2[key]
+	hosts2_set = {}
 
-	# print(differences1)
+	for keys in hosts2.keys():
 
-	return differences1
+		hosts2_set[keys] = []
+
+	for host_data in hosts2:
+
+		data = hosts2[host_data]
+
+		for q_info in data:
+
+			ip_set = set()
+			# print(q_info)
+			for q in q_info:
+				ip_set.add(q[UT.ANSWER_DATA_KEY])
+			
+			hosts2_set[host_data].append(ip_set)
+	
+	
+
+	meta_hosts_set = {}
+
+	for host, sets in hosts1_set.items():
+
+		meta_set = sets + hosts2_set[host]
+
+		meta_hosts_set[host] = meta_set
+
+	differences2 = 0
+
+	for sets in meta_hosts_set.values():
+
+		seen = []
+
+		for q_set in sets:
+
+			if q_set not in seen:
+
+				seen.append(q_set)
+		if len(seen) > 1:
+
+			differences2 = differences2 + len(seen) -1
+	print(differences1,differences2)
+
+	return [differences1, differences2]
 
 
 
 
 
-# count_different_dns_responses("dns_output_1.json","dns_output_2.json")
+count_different_dns_responses("dns_output_1.json","dns_output_2.json")
 
 # run 1
 # run_dig(top_100, "dns_output_1.json")
@@ -349,7 +396,7 @@ def count_different_dns_responses(filename1, filename2):
 # run_dig(top_100, "dns_output_2.json")
 
 # run w/ argentinian server 190.221.14.35
-run_dig(["google.com"], "dns_google.json")
+# run_dig(top_100, "dns_output_arg.json", dns_query_server="190.221.14.35")
 
 # (a)
 # print(get_average_ttls("dns_output_1.json"))
