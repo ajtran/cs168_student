@@ -31,11 +31,18 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 	for host in hostnames:
 		for _ in range(5):
 			dig_host = {}
-			dig = subprocess.Popen(
-			    ["dig", "+trace", "+tries=1", "+nofail", host],
-			    stdout = subprocess.PIPE,
-			    stderr = subprocess.PIPE
-			)
+			if dns_query_server:
+				dig = subprocess.Popen(
+						["dig", host, "@" + dns_query_server],
+						stdout = subprocess.PIPE,
+						stderr = subprocess.PIPE
+						)
+			else:
+				dig = subprocess.Popen(
+			  	  ["dig", "+trace", "+tries=1", "+nofail", host],
+			   		stdout = subprocess.PIPE,
+			      stderr = subprocess.PIPE
+						)
 
 			out, error = dig.communicate()
 			data = out.decode("utf-8")
@@ -135,7 +142,7 @@ def get_average_ttls(filename):
 	average_terminating_ttl = reduce(lambda x, y: x + y, A_CN_servers)/len(A_CN_servers)
 
 	rtn = [average_root_ttl, average_TLD_ttl, average_other_ttl, average_terminating_ttl]
-	print(rtn)
+	# print(rtn)
 
 	return rtn
 
@@ -160,13 +167,13 @@ def get_average_times(filename):
 
 					site_final_req_times.append(q_list[UT.TIME_KEY])
 
-	print(site_rslv_times)
-	print(site_final_req_times)
+	# print(site_rslv_times)
+	# print(site_final_req_times)
 
 	avg_rslv_time = reduce(lambda x, y: x + y, site_rslv_times)/len(site_rslv_times)
 	avg_final_req_time = reduce(lambda x, y: x + y, site_rslv_times)/len(site_rslv_times)
 
-	print ([avg_rslv_time,avg_final_req_time])
+	# print ([avg_rslv_time,avg_final_req_time])
 	return [avg_rslv_time,avg_final_req_time]
 	
 
@@ -174,15 +181,26 @@ def generate_time_cdfs(json_filename, output_filename):
 	with open(json_filename) as filename:
 		data = json.load(filename)
 
-	# i assume we have to call get average times(filename)
+	site_rslv_times = []
+	site_final_req_times = []
 
-	for hostname, pings in data.items():
-		pings = filter(lambda ele: ele != -1.0, pings) #hmmm what do i change here?
-		plot.plot(pings, np.linspace(0,1,len(pings)), label=hostname) #hm... what do i plot instead?
+	for queries in data:
+		for q_list in queries[UT.QUERIES_KEY]:
+			site_rslv_times.append(q_list[UT.TIME_KEY])
+			for query in q_list[UT.ANSWERS_KEY]:
+				if query[UT.TYPE_KEY] == "A" or query[UT.TYPE_KEY] == "cname":
+					site_final_req_times.append(q_list[UT.TIME_KEY])
+
+	site_rslv_times.sort()
+	site_final_req_times.sort()
+
+	plot.plot(site_rslv_times, np.linspace(0,1,len(site_rslv_times)), label="Time to Resolve Site") #hm... what do i plot instead?
+	plot.plot(site_final_req_times, np.linspace(0,1,len(site_final_req_times)), label="Time to Resolve Final Request")
 	plot.legend()
 	plot.grid() # Show grid lines, which makes the plot easier to read.
  	plot.xlabel("milliseconds") # Label the x-axis.
  	plot.ylabel("Cumulative Fraction") # Label the y-axis.
+ 	# plot.show()
 	with backend_pdf.PdfPages(output_filename) as pdf:
 		pdf.savefig()
 
@@ -191,9 +209,17 @@ def count_different_dns_responses(filename1, filename2):
 
 	pass
 
+# run 1
 # run_dig(top_100, "dns_output_1.json")
 
-run_dig(["google.com"], "dig_output.json")
-# get_average_ttls("dig_output.json")
-# get_average_times("dig_output.json")
+# run 2 - one hour apart
+# run_dig(top_100, "dns_output_2.json")
 
+# (a)
+# print(get_average_ttls("dns_output_1.json"))
+
+# (b)
+# generate_time_cdfs("dns_output_1.json", "writeup/dns_output_1.png")
+
+# (d) 
+# run_dig(top_100, "dns_output_kor.json", "221.132.89.153")

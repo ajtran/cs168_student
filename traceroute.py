@@ -34,7 +34,7 @@ def run_traceroute(hostnames, num_packets, output_filename):
 
 # experiment a - 5 @ 6:00
 # exper_a = ["google.com", "facebook.com", "www.berkeley.edu", "allspice.lcs.mit.edu", "todayhumor.co.kr", "www.city.kobe.lg.jp", "www.vutbr.cz", "zanvarsity.ac.tz"]
-# run_traceroute(exper_a, 5, "tr_a_5.txt")
+# run_traceroute(exper_a, 5, "tr_a_test.txt")
 
 def parse_traceroute(raw_traceroute_filename, output_filename):
   """

@@ -187,11 +187,22 @@ A factor that might cause asymmetric routes are the latency in the paths between
 
 \item What's the average root TTL in the 5 iterations of the top Alexa websites? Average TLD TTL? Average other name server TTL? Average terminating entry TTL?
 
-FIXME: ANSWER HERE
+\begin{center}
+\begin{tabular}{|| c | c ||}
+\hline
+average root TTL & 388092 \\
+average TLD TTL & 172800 \\
+average other name server TTL & 131447 \\
+average terminating entry TTL & 8227 \\
+\hline
+\end{tabular}
+\end{center}
 
 \item Plot a CDF of your 5 iterations from the Alexa top 100 websites using your \texttt{generate\_time\_cdfs} function (this should have two lines, as described above).
 
-FIXME: ANSWER HERE
+\begin{center}
+\includegraphics[scale=0.5]{dns_output_1}
+\end{center}
 
 \item Run \texttt{run\_dig} twice at least 1 hour apart. How many answers change within the first trial? How many names gave different answers at some point in the two trials (i.e., what values does {count\_different\_dns\_responses} return?)?
 
