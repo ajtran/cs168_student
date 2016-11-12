@@ -206,20 +206,20 @@ average terminating entry TTL & 8227 \\
 
 \item Run \texttt{run\_dig} twice at least 1 hour apart. How many answers change within the first trial? How many names gave different answers at some point in the two trials (i.e., what values does {count\_different\_dns\_responses} return?)?
 
-FIXME: ANSWER HERE
+Around 19 hosts gave different names at some point in the first trial, and in two trials 45 hosts gave different names.
 
 \item Run \texttt{run\_dig} using the name of a server in a different country. You can find public DNS servers in other countries here. 
 Run \texttt{count\_different\_dns\_responses} with your original trace and the one from the new country. What does it return?
 
-FIXME: ANSWER HERE
+It returns 19 (expected because that's our original trace) and 52 for our different country.
 
 \item Take a look at a few of the names that returned different answers when you queried a different name server in the previous part. Use ping to measure the round trip time to the different IP addresses returned. What's the most likely reason that the different DNS server returned a different IP address? Answer in one sentence (you do not need to provide your ping output).
 
-FIXME: ANSWER HERE
+The server returned different IP addresses in order to distribute the load.
 
 \item We asked you to use the \texttt{+trace} argument when running \texttt{dig}, which causes your local machine to resolve all requests iteratively starting from the root DNS server. How would the DNS resolution times have been different, and why if you hadn't used the \texttt{+trace} argument? Answer in 1 sentence.
 
-FIXME: ANSWER HERE
+DNS times would've been shorter, and we see that it works by pretending it's the name server, so without the +trace tag, there won't be any '.' responses in the output.  
 
 \end{enumerate}
 
