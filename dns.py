@@ -32,17 +32,20 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 		for _ in range(5):
 			dig_host = {}
 			if dns_query_server:
-				dig = subprocess.Popen(
-						["dig", host, "@" + dns_query_server],
-						stdout = subprocess.PIPE,
-						stderr = subprocess.PIPE
-						)
+				args = "dig " + host + " @ " + dns_query_server
 			else:
+				args = "dig trace +tries=1 +nofail " + host
+			try:
+				output = subprocess.check_output(args, shell=True)
+				success = True
+			except:
+				success = False
+			if success:
 				dig = subprocess.Popen(
-			  	  ["dig", "+trace", "+tries=1", "+nofail", host],
-			   		stdout = subprocess.PIPE,
-			      stderr = subprocess.PIPE
-						)
+			  	args.split(),
+			   	stdout = subprocess.PIPE,
+			    stderr = subprocess.PIPE
+					)
 
 			out, error = dig.communicate()
 			data = out.decode("utf-8")
@@ -54,7 +57,7 @@ def run_dig(hostname_filename, output_filename, dns_query_server=None):
 				queries = parse[3:]
 
 			dig_host[UT.NAME_KEY] = host
-			dig_host[UT.SUCCESS_KEY] = True
+			dig_host[UT.SUCCESS_KEY] = success
 			dig_host[UT.QUERIES_KEY] = []
 			
 			if dns_query_server:
@@ -346,7 +349,7 @@ def count_different_dns_responses(filename1, filename2):
 # run_dig(top_100, "dns_output_2.json")
 
 # run w/ argentinian server 190.221.14.35
-run_dig(top_100, "dns_output_arg.json", dns_query_server="190.221.14.35")
+run_dig(["google.com"], "dns_google.json")
 
 # (a)
 # print(get_average_ttls("dns_output_1.json"))
