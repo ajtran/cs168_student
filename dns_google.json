@@ -1,0 +1,1247 @@
+[
+  {
+    "Name": "google.com",
+    "Success": true,
+    "Queries": [
+      {
+        "Time in millis": 8,
+        "Answers": [
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "m.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "j.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "l.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "e.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "c.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "g.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "f.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "k.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "i.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "h.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "d.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "a.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "b.root-servers.net.",
+            "TTL": 311889
+          },
+          {
+            "Queried name": ".",
+            "Type": "RRSIG",
+            "Data": "NS",
+            "TTL": 487177
+          }
+        ]
+      },
+      {
+        "Time in millis": 8,
+        "Answers": [
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "g.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "b.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "f.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "l.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "d.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "j.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "e.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "i.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "a.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "h.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "k.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "c.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "m.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "DS",
+            "Data": "30909",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "com.",
+            "Type": "RRSIG",
+            "Data": "DS",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 5,
+        "Answers": [
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns2.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns1.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns3.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns4.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 20,
+        "Answers": [{
+            "Queried name": "google.com.", "Type": "A", "Data": "216.58.195.78", "TTL": 300
+          }]
+      }
+    ]
+  },
+  {
+    "Name": "google.com",
+    "Success": true,
+    "Queries": [
+      {
+        "Time in millis": 7,
+        "Answers": [
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "a.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "g.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "f.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "j.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "c.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "i.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "k.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "m.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "h.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "l.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "e.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "d.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "b.root-servers.net.",
+            "TTL": 311885
+          },
+          {
+            "Queried name": ".",
+            "Type": "RRSIG",
+            "Data": "NS",
+            "TTL": 487173
+          }
+        ]
+      },
+      {
+        "Time in millis": 167,
+        "Answers": [
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "a.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "b.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "c.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "d.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "e.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "f.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "g.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "h.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "i.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "j.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "k.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "l.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "m.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "DS",
+            "Data": "30909",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "com.",
+            "Type": "RRSIG",
+            "Data": "DS",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 23,
+        "Answers": [
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns2.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns1.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns3.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns4.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 20,
+        "Answers": [{
+            "Queried name": "google.com.", "Type": "A", "Data": "216.58.195.78", "TTL": 300
+          }]
+      }
+    ]
+  },
+  {
+    "Name": "google.com",
+    "Success": true,
+    "Queries": [
+      {
+        "Time in millis": 7,
+        "Answers": [
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "a.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "m.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "l.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "j.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "e.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "b.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "k.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "c.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "g.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "i.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "f.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "d.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "h.root-servers.net.",
+            "TTL": 311884
+          },
+          {
+            "Queried name": ".",
+            "Type": "RRSIG",
+            "Data": "NS",
+            "TTL": 487172
+          }
+        ]
+      },
+      {
+        "Time in millis": 18,
+        "Answers": [
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "k.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "g.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "l.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "b.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "d.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "i.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "a.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "c.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "h.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "m.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "e.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "f.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "j.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "DS",
+            "Data": "30909",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "com.",
+            "Type": "RRSIG",
+            "Data": "DS",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 176,
+        "Answers": [
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns2.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns1.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns3.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns4.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 20,
+        "Answers": [{
+            "Queried name": "google.com.", "Type": "A", "Data": "216.58.195.78", "TTL": 300
+          }]
+      }
+    ]
+  },
+  {
+    "Name": "google.com",
+    "Success": true,
+    "Queries": [
+      {
+        "Time in millis": 8,
+        "Answers": [
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "c.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "g.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "f.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "m.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "b.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "d.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "a.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "i.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "e.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "j.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "k.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "h.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "l.root-servers.net.",
+            "TTL": 311883
+          },
+          {
+            "Queried name": ".",
+            "Type": "RRSIG",
+            "Data": "NS",
+            "TTL": 487171
+          }
+        ]
+      },
+      {
+        "Time in millis": 167,
+        "Answers": [
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "a.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "b.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "c.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "d.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "e.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "f.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "g.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "h.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "i.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "j.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "k.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "l.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "m.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "DS",
+            "Data": "30909",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "com.",
+            "Type": "RRSIG",
+            "Data": "DS",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 24,
+        "Answers": [
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns2.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns1.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns3.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns4.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 48,
+        "Answers": [{
+            "Queried name": "google.com.", "Type": "A", "Data": "216.58.195.78", "TTL": 300
+          }]
+      }
+    ]
+  },
+  {
+    "Name": "google.com",
+    "Success": true,
+    "Queries": [
+      {
+        "Time in millis": 8,
+        "Answers": [
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "g.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "f.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "j.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "a.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "d.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "l.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "k.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "i.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "m.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "h.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "e.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "b.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "NS",
+            "Data": "c.root-servers.net.",
+            "TTL": 311882
+          },
+          {
+            "Queried name": ".",
+            "Type": "RRSIG",
+            "Data": "NS",
+            "TTL": 487170
+          }
+        ]
+      },
+      {
+        "Time in millis": 134,
+        "Answers": [
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "i.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "j.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "c.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "f.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "b.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "d.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "k.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "m.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "h.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "l.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "a.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "e.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "NS",
+            "Data": "g.gtld-servers.net.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "com.",
+            "Type": "DS",
+            "Data": "30909",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "com.",
+            "Type": "RRSIG",
+            "Data": "DS",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 23,
+        "Answers": [
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns2.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns1.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns3.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "google.com.",
+            "Type": "NS",
+            "Data": "ns4.google.com.",
+            "TTL": 172800
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "CK0POJMG874LJREF7EFN8430QVIT8BSM.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "NSEC3",
+            "Data": "1",
+            "TTL": 86400
+          },
+          {
+            "Queried name": "S84AE3BIT99DKIHQH27TRC0584HV5KOH.com.",
+            "Type": "RRSIG",
+            "Data": "NSEC3",
+            "TTL": 86400
+          }
+        ]
+      },
+      {
+        "Time in millis": 20,
+        "Answers": [{
+            "Queried name": "google.com.", "Type": "A", "Data": "216.58.195.78", "TTL": 300
+          }]
+      }
+    ]
+  }
+]
